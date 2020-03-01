@@ -38,7 +38,7 @@ export default function File({
               <img
                 alt="loading"
                 style={{ width: 150, height: 150 }}
-                src={cdnQrcode(record.key, 'file')}
+                src={cdnQrcode(record.key, 'file', !user)}
               />
             )}>
             <Button style={{ marginLeft: 10 }}>
@@ -55,7 +55,7 @@ export default function File({
               </Button>
             </Popconfirm>
           )}
-          <CopyToClipboard text={cdnUrl(record.key, 'file')}
+          <CopyToClipboard text={cdnUrl(record.key, 'file', !user)}
             onCopy={() => message.success('Copied successfully')}>
             <Button style={{ marginLeft: 10 }} type="primary">Copy</Button>
           </CopyToClipboard>

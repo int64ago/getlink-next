@@ -1,14 +1,18 @@
 import crypto from 'crypto';
 
+import auth0 from '../../../utils/auth0';
+import { OSS } from '../../../utils/constant';
+
 const OSSAccessKeyId = process.env.OSS_AK;
 const OSSAccessKeySecret = process.env.OSS_SK;
 
-export default (req, res) => {
-  // download / cdn
+export default async (req, res) => {
   const type = req.query['type'];
+  const { user: { sub: uid } = {} } = await auth0.getSession(req) || {};
 
-  const host = `https://int64ago-${type}.oss-cn-hangzhou.aliyuncs.com`;
-  const maxSize = 1024 * 1024 * 1000; // 1GB
+  const maxSize = !!uid
+    ? 1024 * 1024 * 1000 // 1GB
+    : 1024 * 1024 * 100; // 100MB
   const maxAge = 5 * 60 * 1000; // 5min
 
   const policyString = JSON.stringify({
@@ -25,7 +29,7 @@ export default (req, res) => {
 
   res.json({
     OSSAccessKeyId,
-    host,
+    host: OSS[uid ? type : 'anonymouse'].host,
     policy,
     signature,
     success_action_status: 200,

@@ -35,7 +35,7 @@ export default function Uploader({
   }, [type]);
 
   const getSign = useCallback(() => {
-    fetch(`/api/signature/${type === 'file' ? 'download' : 'cdn'}`)
+    fetch(`/api/signature/${type}`)
       .then(res => res.json())
       .then(json => setSign(json));
   }, [type]);
@@ -72,7 +72,7 @@ export default function Uploader({
   useEffect(() => {
     list.forEach(d => {
       const img = new Image();
-      img.src = cdnQrcode(d.key, d.type);
+      img.src = cdnQrcode(d.key, d.type, !user);
     });
   }, [list]);
 

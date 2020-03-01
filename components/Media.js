@@ -26,21 +26,21 @@ export default function Media({
             style={{ width: 340 }}
             cover={
               type === 'image' ? (
-                <img src={cdnUrl(item.key, type)}/>
+                <img src={cdnUrl(item.key, type, !user)}/>
               ) : (
                 <video
                   controls
-                  poster={`${cdnUrl(item.key, type)}?x-oss-process=video/snapshot,t_0,ar_auto`}
-                  src={cdnUrl(item.key, type)}
+                  poster={`${cdnUrl(item.key, type, !user)}?x-oss-process=video/snapshot,t_0,ar_auto`}
+                  src={cdnUrl(item.key, type, !user)}
                 />
               )
             }
             actions={[
-              <CopyToClipboard key="copy" text={cdnUrl(item.key, type)}
+              <CopyToClipboard key="copy" text={cdnUrl(item.key, type, !user)}
                 onCopy={() => message.success('Copied successfully')}>
                 <span>Copy</span>
               </CopyToClipboard>,
-              type === 'image' && <CopyToClipboard key="copy_md" text={`![](${cdnUrl(item.key, type)})`}
+              type === 'image' && <CopyToClipboard key="copy_md" text={`![](${cdnUrl(item.key, type, !user)})`}
                 onCopy={() => message.success('Copied successfully')}>
                 <span>Copy MD</span>
               </CopyToClipboard>,
@@ -56,7 +56,7 @@ export default function Media({
               <Popover content={(
                   <img
                     style={{ width: 150, height: 150 }}
-                    src={cdnQrcode(item.key)}
+                    src={cdnQrcode(item.key, type, !user)}
                   />
               )}>
                 <QrcodeOutlined />
