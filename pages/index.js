@@ -2,7 +2,6 @@ import React, {
   useCallback,
   useState,
 } from 'react';
-import Head from 'next/head';
 import { Layout, Popover, Menu, Avatar, Dropdown, Button } from 'antd';
 import {
   QrcodeOutlined,
@@ -14,6 +13,7 @@ import {
   InfoCircleTwoTone,
 } from '@ant-design/icons';
 
+import HTMLHead from '../components/HTMLHead';
 import Uploader from '../components/Uploader';
 import QRCode from '../components/QRCode';
 import ShortUrl from '../components/ShortUrl';
@@ -35,10 +35,7 @@ const App = ({ user }) => {
 
   return (
     <Layout style={{ height: '100%', flexDirection: 'row' }}>
-      <Head>
-        <title>Get Link!</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-      </Head>
+      <HTMLHead />
       <Sider
         breakpoint="lg"
         collapsedWidth={0}
