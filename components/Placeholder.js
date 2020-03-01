@@ -71,7 +71,7 @@ export default function Placeholder() {
             <Input value={text} onChange={(e) => setText(e.target.value)} />
           </Form.Item>
           {(width > 0 && height > 0) && (
-            <Form.Item>
+            <Form.Item label="Preview">
               <div>
                 <Input style={{ width: 280 }} disabled value={url} />
                 <CopyToClipboard text={url}
