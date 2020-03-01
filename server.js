@@ -1,4 +1,6 @@
 require('dotenv').config();
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const next = require('next');
 const AV = require('leancloud-storage');
@@ -15,13 +17,21 @@ if (!AV.applicationId) {
   });
 }
 
+const staticFiles = fs.readdirSync(path.join(__dirname, 'public'));
+
 app.prepare().then(() => {
-  const server = express()
+  const server = express();
 
   server.get('/:shortId', async (req, res) => {
-    if (/\/(api|favicon)/.test(req.path)) {
+    if (/\/api/.test(req.path) || staticFiles.includes(req.path.substr(1))) {
         return handle(req, res);
     }
+
+    if (req.path === '/service-worker.js') {
+      const filePath = path.join(__dirname, '.next', req.path);
+      return res.sendFile(filePath);
+    }
+
     if (req.path === '/ip') {
       const ip = req.headers['x-forwarded-for'] ||
       req.connection.remoteAddress ||
@@ -29,6 +39,7 @@ app.prepare().then(() => {
       req.connection.socket.remoteAddress;
       return res.send(ip);
     }
+
     const { shortId } = req.params;
     const query = new AV.Query('Url');
     query.equalTo('shortId', shortId);
@@ -37,7 +48,7 @@ app.prepare().then(() => {
         res.redirect(json.toJSON().longUrl);
         json.increment('clickCount', 1).save();
     } else {
-        res.status(400).send('Invalid url')
+        res.status(400).send('Invalid url');
     }
   });
 
