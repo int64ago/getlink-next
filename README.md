@@ -19,21 +19,23 @@ Visit [https://302.at/](https://302.at/) by PC for better experience :-)
  - [Aliyun OSS](https://www.aliyun.com/product/oss) - File Storage
  - [Docker](https://www.docker.com/) + [Caddy](https://caddyserver.com/) - Serving
  - [GitHub Actions](https://github.com/features/actions) - CI/CD
+ - [PLACEHOLDER.COM](https://placeholder.com/) - Placeholder(Proxy)
+ - [Google Charts](https://developers.google.com/chart/infographics/docs/qr_codes) - QR Code(Proxy)
  - ...
 
 ### Snapshots
 
-![](https://cdn.int64ago.org/17254490-0ee2-43a1-bb0c-fd721ee15f09.png)
+![](https://user-images.githubusercontent.com/2230882/75618244-77278980-5ba6-11ea-942f-6647a1a0c59e.png)
 
-![](https://cdn.int64ago.org/16ad4184-8366-4dc5-b09d-fe92ca928886.png)
+![](https://user-images.githubusercontent.com/2230882/75618247-78f14d00-5ba6-11ea-8f8b-c5f4f47b7376.png)
 
-![](https://cdn.int64ago.org/d80db3b7-192d-4a95-9ea6-c5a435b5fe82.png)
+![](https://user-images.githubusercontent.com/2230882/75618250-7a227a00-5ba6-11ea-9440-dc0141e151ed.png)
 
-![](https://cdn.int64ago.org/c81f39ba-500a-4724-aa97-7ee2169225dd.png)
+![](https://user-images.githubusercontent.com/2230882/75618248-7989e380-5ba6-11ea-8e5d-436156662b6d.png)
 
-![](https://cdn.int64ago.org/52939fb4-b462-4056-8d8a-f294f3fa5462.png)
+![](https://user-images.githubusercontent.com/2230882/75618251-7abb1080-5ba6-11ea-818c-b3db09e9de4c.png)
 
-![](https://cdn.int64ago.org/ca23356d-2a1b-4643-bbab-19a1e8306a25.png)
+![](https://user-images.githubusercontent.com/2230882/75618253-7b53a700-5ba6-11ea-8abb-3359dc32e51f.png)
 
 
 ## LICENSE
