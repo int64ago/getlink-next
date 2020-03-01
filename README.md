@@ -41,6 +41,11 @@
 ![](https://user-images.githubusercontent.com/2230882/75618253-7b53a700-5ba6-11ea-8abb-3359dc32e51f.png)
 
 
+## Notice
+
+ - There's no SLA guarantee for non-login user
+ - File size limit is 100MB for non-login user but 1GB for logged user
+
 ## LICENSE
 
 MIT
