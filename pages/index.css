@@ -53,9 +53,10 @@ code {
 }
 
 .ant-layout-header {
+  padding: 0 24px;
   display: flex;
   flex-direction: row-reverse;
-  padding: 0 24px;
+  align-items: center;
 }
 
 .logo {
