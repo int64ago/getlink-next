@@ -1,6 +1,3 @@
-Get Link!
---
-
 [![](https://user-images.githubusercontent.com/2230882/75623031-2aad6f80-5be1-11ea-9c67-921b79688d85.png)](https://302.at/)
 
 
