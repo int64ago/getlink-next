@@ -61,7 +61,8 @@ code {
 
 .logo {
   height: 64px;
-  color: #d6d6d6;
+  color: #f0f0f0;
+  text-shadow: 3px 2px 0 #7A7A7A;
   display: flex;
   justify-content: center;
   align-items: center;
