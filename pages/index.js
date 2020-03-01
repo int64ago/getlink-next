@@ -43,9 +43,9 @@ const App = ({ user }) => {
         breakpoint="lg"
         collapsedWidth={0}
       >
-        <div className="logo">
+        <a className="logo" href="https://github.com/int64ago/getlink-next" target="_blank">
           Get Link!
-        </div>
+        </a>
         <Menu
           theme="dark"
           mode="inline"
