@@ -3,10 +3,13 @@
 
 ## Features
 
- - Image/Video/File uploading
- - Image placeholder
- - QR Code generator
- - URL shortener
+ - 🙌 Image/Video/File uploading（图片/视频/文件上传，CDN 支持）
+ - 🛣 Image placeholder（图片占位符）
+ - 🤳 QR Code generator（二维码生成）
+ - 🙈 URL shortener（短链接）
+ - 🦅 Responsive（响应式设计）
+ - 🐲 PWA support（PWA 支持）
+ - ...
 
 ## Credits
 
