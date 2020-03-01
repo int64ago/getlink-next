@@ -44,7 +44,7 @@ export default function Uploader({
       })
       .then(json => setSign(json))
       .catch(err => {
-        message.error(err.statusText)
+        message.error(err.statusText || err.message || 'Forbidden');
       });
   }, [type]);
 
