@@ -1,7 +1,7 @@
 Get Link!
 --
 
-Visit [https://302.at/](https://302.at/) by PC for better experience :-)
+Visit [https://302.at/](https://302.at/) and enjoy :-)
 
 ## Features
 
