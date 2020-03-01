@@ -12,8 +12,8 @@ Visit [https://302.at/](https://302.at/) by PC for better experience :-)
 
 ## Credits
 
- - [Next.js](https://nextjs.org/) - SSR
- - [Ant Design v4](https://ant.design/) - Components
+ - [Next.js](https://nextjs.org/) - SSR && PWA
+ - [Ant Design v4](https://ant.design/) - UI Components
  - [Auth0](https://auth0.com/) - Authentication
  - [LeanCloud](https://leancloud.app/) - Data Storage
  - [Aliyun OSS](https://www.aliyun.com/product/oss) - File Storage
