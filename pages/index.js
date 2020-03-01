@@ -3,7 +3,7 @@ import React, {
   useState,
 } from 'react';
 import Head from 'next/head';
-import { Layout, Menu, Avatar, Dropdown, Button } from 'antd';
+import { Layout, Popover, Menu, Avatar, Dropdown, Button } from 'antd';
 import {
   QrcodeOutlined,
   FileImageOutlined,
@@ -11,6 +11,7 @@ import {
   VideoCameraOutlined,
   ContainerOutlined,
   LinkOutlined,
+  InfoCircleTwoTone,
 } from '@ant-design/icons';
 
 import Uploader from '../components/Uploader';
@@ -83,7 +84,12 @@ const App = ({ user }) => {
             <Avatar src={user.picture} />
           </Dropdown>
         ) : (
-          <Button type="link" href="/api/login">Login</Button>
+          <div>
+            <Button type="link" href="/api/login">Login</Button>
+            <Popover placement="left" content="There's no SLA guarantee for non-login user.">
+              <InfoCircleTwoTone />
+            </Popover>
+          </div>
         )}
       </Header>
       <Content
