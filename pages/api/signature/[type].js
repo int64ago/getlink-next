@@ -2,6 +2,7 @@ import crypto from 'crypto';
 
 import auth0 from '../../../utils/auth0';
 import { OSS } from '../../../utils/constant';
+import { validUser } from '../../../utils/av';
 
 const OSSAccessKeyId = process.env.OSS_AK;
 const OSSAccessKeySecret = process.env.OSS_SK;
@@ -9,6 +10,11 @@ const OSSAccessKeySecret = process.env.OSS_SK;
 export default async (req, res) => {
   const type = req.query['type'];
   const { user: { sub: uid } = {} } = await auth0.getSession(req) || {};
+
+  const isValid = await validUser(uid);
+  if (!isValid) {
+    return res.status(403).end('Invalid user!');
+  }
 
   const maxSize = !!uid
     ? 1024 * 1024 * 1000 // 1GB

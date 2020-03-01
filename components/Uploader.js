@@ -36,8 +36,16 @@ export default function Uploader({
 
   const getSign = useCallback(() => {
     fetch(`/api/signature/${type}`)
-      .then(res => res.json())
-      .then(json => setSign(json));
+    .then(res => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        return Promise.reject(res);
+      })
+      .then(json => setSign(json))
+      .catch(err => {
+        message.error(err.statusText)
+      });
   }, [type]);
 
   const handleRemove = useCallback((objectId) => {
@@ -92,6 +100,13 @@ export default function Uploader({
       }
     },
     accept: type === 'file' ? '*' : `${type}/*`,
+    beforeUpload() {
+      if (!sign.host) {
+        message.error('Sign is invalid');
+        return false;
+      }
+      return true;
+    },
     onChange(info) {
       const { status, name, size, originFileObj } = info.file;
       if (status !== 'uploading') {

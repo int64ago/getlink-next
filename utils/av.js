@@ -7,6 +7,16 @@ if (!AV.applicationId) {
   });
 }
 
+export async function validUser(uid) {
+  const whiteList = await new AV.Query('WhiteList').find();
+  if (whiteList.length > 0) {
+    return !!whiteList.find(d => d.toJSON().uid === uid);
+  } else {
+    const blackList = await new AV.Query('BlackList').find();
+    return !blackList.find(d => d.toJSON().uid === uid);
+  }
+}
+
 export function save({ name, key, type, size, uid }) {
   const Resource = AV.Object.extend('Resource');
   const resource = new Resource();
