@@ -23,8 +23,8 @@ export default function Placeholder() {
   }
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ width: '50%' }}>
+    <div>
+      <div>
         <Form {...layout}>
           <Form.Item label="Size(px)">
             <InputNumber
@@ -70,20 +70,22 @@ export default function Placeholder() {
           <Form.Item label="Text">
             <Input value={text} onChange={(e) => setText(e.target.value)} />
           </Form.Item>
+          {(width > 0 && height > 0) && (
+            <Form.Item>
+              <div>
+                <Input style={{ width: 280 }} disabled value={url} />
+                <CopyToClipboard text={url}
+                  onCopy={() => message.success('Copied successfully')}>
+                  <Button type="primary">Copy</Button>
+                </CopyToClipboard>
+                <div style={{ marginTop: 20 }}>
+                  <img style={{ maxWidth: '100%', maxHeight: 300 }} src={url} />
+                </div>
+              </div>
+            </Form.Item>
+          )}
         </Form>
       </div>
-      {(width > 0 && height > 0) && (
-        <div style={{ width: '50%', paddingLeft: 20 }}>
-          <Input style={{ width: 300 }} disabled value={url} />
-          <CopyToClipboard text={url}
-            onCopy={() => message.success('Copied successfully')}>
-            <Button type="primary">Copy</Button>
-          </CopyToClipboard>
-          <div style={{ marginTop: 20 }}>
-            <img style={{ maxWidth: '100%', maxHeight: 300 }} src={url} />
-          </div>
-        </div>
-      )}
     </div>
   );
 }

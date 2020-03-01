@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  min-width: 900px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -11,6 +10,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#__next {
+  height: 100%;
 }
 
 .ant-card-cover {
@@ -43,4 +46,24 @@ code {
 .card-list {
   display: flex;
   flex-wrap: wrap;
+}
+
+.ant-upload.ant-upload-drag {
+  height: unset !important;
+}
+
+.ant-layout-header {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 0 24px;
+}
+
+.logo {
+  height: 64px;
+  color: #d6d6d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
 }
