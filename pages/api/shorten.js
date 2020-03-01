@@ -1,6 +1,8 @@
 import shorturl from 'short-url-generator';
 import AV from 'leancloud-storage';
 
+import auth0 from '../../utils/auth0';
+
 if (!AV.applicationId) {
   AV.init({
     appId: process.env.AV_AK,
@@ -10,6 +12,7 @@ if (!AV.applicationId) {
 
 export default async (req, res) => {
   const { longUrl } = req.query;
+  const { user: { sub: uid = 'anonymous' } = {} } = await auth0.getSession(req) || {};
   try {
     const shortUrl = shorturl(longUrl);
     if (shortUrl.is_url) {
@@ -17,6 +20,7 @@ export default async (req, res) => {
       const url = new Url();
       url.set('longUrl', longUrl);
       url.set('shortId', shortUrl.short);
+      url.set('uid', uid);
       const json = await url.save();
       res.json(json);
     } else {
