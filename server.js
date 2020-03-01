@@ -48,7 +48,7 @@ app.prepare().then(() => {
         res.redirect(json.toJSON().longUrl);
         json.increment('clickCount', 1).save();
     } else {
-        res.status(400).send('Invalid url');
+        app.render404(req, res);
     }
   });
 
