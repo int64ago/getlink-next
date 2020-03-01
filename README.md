@@ -1,7 +1,11 @@
-👇👇🏻👇🏼 Visit 👇🏽👇🏾👇🏿
+👇👇🏻👇🏼👇🏽👇🏾👇🏿
 
 [![](https://user-images.githubusercontent.com/2230882/75623031-2aad6f80-5be1-11ea-9c67-921b79688d85.png)](https://302.at/)
 
+👆👆🏻👆🏼👆🏽👆🏾👆🏾
+
+
+![](https://qr.302.at/chart?chs=300x300&cht=qr&choe=UTF-8&chl=https%3A%2F%2F302.at%2F)
 
 ## Features
 
@@ -28,17 +32,19 @@
 
 ### Snapshots
 
-![](https://user-images.githubusercontent.com/2230882/75618244-77278980-5ba6-11ea-942f-6647a1a0c59e.png)
+![](https://user-images.githubusercontent.com/2230882/75627267-ae7b5200-5c09-11ea-8cc9-2ece12ed0d4d.png)
 
-![](https://user-images.githubusercontent.com/2230882/75618247-78f14d00-5ba6-11ea-8f8b-c5f4f47b7376.png)
+![](https://user-images.githubusercontent.com/2230882/75627513-d4a1f180-5c0b-11ea-925b-fbe45ab23dd4.png)
 
-![](https://user-images.githubusercontent.com/2230882/75618250-7a227a00-5ba6-11ea-9440-dc0141e151ed.png)
+![](https://user-images.githubusercontent.com/2230882/75627514-d5d31e80-5c0b-11ea-8ea1-0f1d7d35a62c.png)
 
-![](https://user-images.githubusercontent.com/2230882/75618248-7989e380-5ba6-11ea-8e5d-436156662b6d.png)
+![](https://user-images.githubusercontent.com/2230882/75627516-d7044b80-5c0b-11ea-9c49-9da71fefcc7f.png)
 
-![](https://user-images.githubusercontent.com/2230882/75618251-7abb1080-5ba6-11ea-818c-b3db09e9de4c.png)
+![](https://user-images.githubusercontent.com/2230882/75627517-d8357880-5c0b-11ea-8d0c-0e6fa6dc689a.png)
 
-![](https://user-images.githubusercontent.com/2230882/75618253-7b53a700-5ba6-11ea-8abb-3359dc32e51f.png)
+![](https://user-images.githubusercontent.com/2230882/75627519-d966a580-5c0b-11ea-9cb0-87744f882db4.png)
+
+![](https://user-images.githubusercontent.com/2230882/75627521-da97d280-5c0b-11ea-81d1-d9c1cb96c5ad.png)
 
 
 ## Notice
