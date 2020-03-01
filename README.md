@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://302.at">
-    <img width="300" src="https://cdn.int64ago.org/4dea1379-2909-4ed1-907f-d54486d2ffac.png" />
+    <img width="300" src="https://user-images.githubusercontent.com/2230882/75623031-2aad6f80-5be1-11ea-9c67-921b79688d85.png" />
   </a>
 </p>
 
@@ -27,21 +27,44 @@
  - [Google Charts](https://developers.google.com/chart/infographics/docs/qr_codes) - QR Code(Proxy)
  - ...
 
+Caddy configure for `p.302.at` and `qr.302.at`:
+
+```
+qr.302.at {
+    gzip
+    proxy / https://chart.googleapis.com {
+        header_upstream X-Real-IP {remote}
+        header_upstream User-Agent {>User-Agent}
+    }
+}
+
+p.302.at {
+    gzip
+    proxy / https://via.placeholder.com {
+        header_upstream X-Real-IP {remote}
+        header_upstream User-Agent {>User-Agent}
+    }
+    expires {
+        match /* 1y
+    }
+}
+```
+
 ### Snapshots
 
-![](https://cdn.int64ago.org/fa781152-e5be-4ab7-bf55-8f0d1c9be2a2.png)
+![](https://user-images.githubusercontent.com/2230882/75627267-ae7b5200-5c09-11ea-8cc9-2ece12ed0d4d.png)
 
-![](https://cdn.int64ago.org/272729ff-c944-4cab-8b5d-f06951361981.png)
+![](https://user-images.githubusercontent.com/2230882/75627513-d4a1f180-5c0b-11ea-925b-fbe45ab23dd4.png)
 
-![](https://cdn.int64ago.org/9cbc9c9b-6f3a-4802-ae0f-99547f1e9074.png)
+![](https://user-images.githubusercontent.com/2230882/75627514-d5d31e80-5c0b-11ea-8ea1-0f1d7d35a62c.png)
 
-![](https://cdn.int64ago.org/fc7cfb06-069e-4fb6-bdf5-0da7681ada05.png)
+![](https://user-images.githubusercontent.com/2230882/75627516-d7044b80-5c0b-11ea-9c49-9da71fefcc7f.png)
 
-![](https://cdn.int64ago.org/fd744049-d413-4f50-b6aa-ff3ea0c2905c.png)
+![](https://user-images.githubusercontent.com/2230882/75627517-d8357880-5c0b-11ea-8d0c-0e6fa6dc689a.png)
 
-![](https://cdn.int64ago.org/f6bac679-6f77-4cd1-87e0-b35e999c0143.png)
+![](https://user-images.githubusercontent.com/2230882/75627519-d966a580-5c0b-11ea-9cb0-87744f882db4.png)
 
-![](https://cdn.int64ago.org/c268f11d-51fe-4d6c-aded-628e609f5a9c.png)
+![](https://user-images.githubusercontent.com/2230882/75627521-da97d280-5c0b-11ea-81d1-d9c1cb96c5ad.png)
 
 
 ## Notice
