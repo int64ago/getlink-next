@@ -3,7 +3,6 @@ import { Table, Button, Popconfirm, Popover, message } from 'antd';
 import { QrcodeOutlined, DeleteOutlined } from '@ant-design/icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import useDebug from '../hooks/useDebug';
 import { cdnQrcode, cdnUrl } from '../utils/helper';
 
 export default function File({
@@ -13,8 +12,6 @@ export default function File({
   list,
   handleRemove,
 }) {
-  const debug = useDebug();
-
   const columns = useMemo(() => [
     {
       title: 'Name',
@@ -46,7 +43,7 @@ export default function File({
               <QrcodeOutlined />
             </Button>
           </Popover>
-          {(user || debug) && (
+          {user && (
             <Popconfirm
               title="Are you sure to delete this ?"
               onConfirm={() => handleRemove(record.objectId)}
@@ -63,7 +60,7 @@ export default function File({
         </div>
       ),
     },
-  ], [handleRemove, debug]);
+  ], [handleRemove]);
 
   return (
     <Table

@@ -4,7 +4,6 @@ import { QrcodeOutlined } from '@ant-design/icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import useMargin from '../hooks/useMargin';
-import useDebug from '../hooks/useDebug';
 import { cdnQrcode, cdnUrl } from '../utils/helper';
 
 const { Meta } = Card;
@@ -17,7 +16,6 @@ export default function Media({
   handleRemove,
   loading,
 }) {
-  const debug = useDebug();
   const ref = useRef(null);
   const margin = useMargin(ref);
 
@@ -48,7 +46,7 @@ export default function Media({
                 onCopy={() => message.success('Copied successfully')}>
                 <span>Copy MD</span>
               </CopyToClipboard>,
-              (user || debug) &&
+              user &&
               <Popconfirm
                 title="Are you sure to delete this?"
                 onConfirm={() => handleRemove(item.objectId)}
