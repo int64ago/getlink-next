@@ -4,7 +4,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { Upload, message } from 'antd';
+import { Upload, Alert, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import uuidV4 from 'uuid/v4';
 import qs from 'query-string';
@@ -18,6 +18,7 @@ const { Dragger } = Upload;
 
 export default function Uploader({
   user,
+  isAdmin,
   type,
 }) {
   const [sign, setSign] = useState({});
@@ -35,6 +36,7 @@ export default function Uploader({
   }, [type]);
 
   const getSign = useCallback(() => {
+    if (!user) return;
     fetch(`/api/signature/${type}`)
     .then(res => {
         if (res.status === 200) {
@@ -80,7 +82,7 @@ export default function Uploader({
   useEffect(() => {
     list.forEach(d => {
       const img = new Image();
-      img.src = cdnQrcode(d.key, d.type, !user);
+      img.src = cdnQrcode(d.key, d.type, isAdmin);
     });
   }, [list]);
 
@@ -125,6 +127,14 @@ export default function Uploader({
 
   return (
     <>
+      {!user && (
+        <Alert
+          style={{ marginBottom: 20 }}
+          showIcon
+          message="Uploading service is not available for non-login user, please login."
+          type="warning"
+        />
+      )}
       <Dragger {...uploadProps}>
         <p className="ant-upload-drag-icon">
           <UploadOutlined />
@@ -136,6 +146,7 @@ export default function Uploader({
           <File
             list={list}
             user={user}
+            isAdmin={isAdmin}
             loading={loading}
             handleRemove={handleRemove}
           />
@@ -144,6 +155,7 @@ export default function Uploader({
             type={type}
             list={list}
             user={user}
+            isAdmin={isAdmin}
             loading={loading}
             handleRemove={handleRemove}
           />

@@ -26,7 +26,7 @@ import './index.css';
 
 const { Header, Sider, Content } = Layout;
 
-const App = ({ user }) => {
+const App = ({ user, isAdmin }) => {
   const [type, setType] = useState('image');
 
   const handleTypeChange = useCallback((e) => {
@@ -97,9 +97,9 @@ const App = ({ user }) => {
                 background: '#fff'
               }}
         >
-          {type === 'image' && <Uploader user={user} type="image" />}
-          {type === 'video' && <Uploader user={user} type="video" />}
-          {type === 'file' && <Uploader user={user} type="file" />}
+          {type === 'image' && <Uploader isAdmin={isAdmin} user={user} type="image" />}
+          {type === 'video' && <Uploader isAdmin={isAdmin} user={user} type="video" />}
+          {type === 'file' && <Uploader isAdmin={isAdmin} user={user} type="file" />}
           {type === 'qrcode' && <QRCode />}
           {type === 'urlshorten' && <ShortUrl />}
           {type === 'placeholder' && <Placeholder />}
@@ -111,9 +111,10 @@ const App = ({ user }) => {
 
 App.getInitialProps = async ({ req, res }) => {
   if (typeof window === 'undefined') {
+    const { adminUser } = require('../utils/av');
     const { user } = await auth0.getSession(req) || {};
-
-    return { user };
+    const isAdmin = await adminUser(user && user.sub);
+    return { user, isAdmin };
   }
 };
 

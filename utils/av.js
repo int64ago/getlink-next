@@ -18,8 +18,9 @@ export async function validUser(uid) {
 }
 
 export async function adminUser(uid) {
+  if (!uid) return false;
   const adminList = await new AV.Query('Admin').find();
-  return adminList.find(d => d.toJSON().uid === uid);
+  return !!adminList.find(d => d.toJSON().uid === uid);
 }
 
 export function save({ name, key, type, size, uid }) {

@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 import auth0 from '../../../utils/auth0';
 import { OSS } from '../../../utils/constant';
-import { validUser, adminUser } from '../../../utils/av';
+import { adminUser } from '../../../utils/av';
 
 const OSSAccessKeyId = process.env.OSS_AK;
 const OSSAccessKeySecret = process.env.OSS_SK;
@@ -11,18 +11,15 @@ export default async (req, res) => {
   const type = req.query['type'];
   const { user: { sub: uid } = {} } = await auth0.getSession(req) || {};
 
-  const isValid = await validUser(uid);
-  if (!isValid) {
+  if (!uid) {
     return res.status(403).end('Invalid user!');
   }
   const isAdmin = await adminUser(uid);
 
-  let maxSize = !!uid
-    ? 1024 * 1024 * 50 // 50MB
-    : 1024 * 1024 * 10; // 10MB
-  if (isAdmin) {
-    maxSize = 1024 * 1024 * 1000; // 1GB
-  }
+  const host = OSS[isAdmin ? type : 'anonymouse'].host;
+  const maxSize = isAdmin
+    ? 1024 * 1024 * 1000 // 1GB
+    : 1024 * 1024 * 50; // 50MB
 
   const maxAge = 5 * 60 * 1000; // 5min
 
@@ -40,7 +37,7 @@ export default async (req, res) => {
 
   res.json({
     OSSAccessKeyId,
-    host: OSS[uid ? type : 'anonymouse'].host,
+    host,
     policy,
     signature,
     success_action_status: 200,

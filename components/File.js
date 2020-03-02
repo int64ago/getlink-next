@@ -9,6 +9,7 @@ import { cdnQrcode, cdnUrl } from '../utils/helper';
 export default function File({
   loading,
   user,
+  isAdmin,
   list,
   handleRemove,
 }) {
@@ -38,7 +39,7 @@ export default function File({
               <img
                 alt="loading"
                 style={{ width: 150, height: 150 }}
-                src={cdnQrcode(record.key, 'file', !user)}
+                src={cdnQrcode(record.key, 'file', isAdmin)}
               />
             )}>
             <Button style={{ marginLeft: 10 }}>
@@ -55,7 +56,7 @@ export default function File({
               </Button>
             </Popconfirm>
           )}
-          <CopyToClipboard text={cdnUrl(record.key, 'file', !user)}
+          <CopyToClipboard text={cdnUrl(record.key, 'file', isAdmin)}
             onCopy={() => message.success('Copied successfully')}>
             <Button style={{ marginLeft: 10 }} type="primary">Copy</Button>
           </CopyToClipboard>

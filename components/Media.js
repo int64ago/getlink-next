@@ -11,6 +11,7 @@ const { Meta } = Card;
 export default function Media({
   type,
   user,
+  isAdmin,
   list,
   handleRemove,
   loading,
@@ -26,21 +27,21 @@ export default function Media({
             style={{ width: 340 }}
             cover={
               type === 'image' ? (
-                <img src={cdnUrl(item.key, type, !user)}/>
+                <img src={cdnUrl(item.key, type, isAdmin)}/>
               ) : (
                 <video
                   controls
-                  poster={`${cdnUrl(item.key, type, !user)}?x-oss-process=video/snapshot,t_0,ar_auto`}
-                  src={cdnUrl(item.key, type, !user)}
+                  poster={`${cdnUrl(item.key, type, isAdmin)}?x-oss-process=video/snapshot,t_0,ar_auto`}
+                  src={cdnUrl(item.key, type, isAdmin)}
                 />
               )
             }
             actions={[
-              <CopyToClipboard key="copy" text={cdnUrl(item.key, type, !user)}
+              <CopyToClipboard key="copy" text={cdnUrl(item.key, type, isAdmin)}
                 onCopy={() => message.success('Copied successfully')}>
                 <span>Copy</span>
               </CopyToClipboard>,
-              type === 'image' && <CopyToClipboard key="copy_md" text={`![](${cdnUrl(item.key, type, !user)})`}
+              type === 'image' && <CopyToClipboard key="copy_md" text={`![](${cdnUrl(item.key, type, isAdmin)})`}
                 onCopy={() => message.success('Copied successfully')}>
                 <span>Copy MD</span>
               </CopyToClipboard>,
