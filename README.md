@@ -70,7 +70,7 @@ p.302.at {
 ## Notice
 
  - There's no SLA guarantee for non-login user
- - File size limit is 100MB for non-login user but 1GB for logged user
+ - File size limit is 10MB for non-login user but 50MB for logged user
 
 ## LICENSE
 

@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 import auth0 from '../../../utils/auth0';
 import { OSS } from '../../../utils/constant';
-import { validUser } from '../../../utils/av';
+import { validUser, adminUser } from '../../../utils/av';
 
 const OSSAccessKeyId = process.env.OSS_AK;
 const OSSAccessKeySecret = process.env.OSS_SK;
@@ -15,10 +15,15 @@ export default async (req, res) => {
   if (!isValid) {
     return res.status(403).end('Invalid user!');
   }
+  const isAdmin = await adminUser(uid);
 
-  const maxSize = !!uid
-    ? 1024 * 1024 * 1000 // 1GB
-    : 1024 * 1024 * 100; // 100MB
+  let maxSize = !!uid
+    ? 1024 * 1024 * 50 // 50MB
+    : 1024 * 1024 * 10; // 10MB
+  if (isAdmin) {
+    maxSize = 1024 * 1024 * 1000; // 1GB
+  }
+
   const maxAge = 5 * 60 * 1000; // 5min
 
   const policyString = JSON.stringify({
