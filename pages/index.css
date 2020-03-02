@@ -17,11 +17,12 @@ code {
 }
 
 .ant-card-cover {
-  height: 200px;
-  width: 340px;
+  height: 155px;
+  width: 240px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 }
 
 .ant-card-cover > img {
@@ -39,7 +40,7 @@ code {
 }
 
 .ant-card {
-  margin: 10px;
+  width: 300px;
   display: inline-block;
 }
 

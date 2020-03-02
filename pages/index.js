@@ -69,7 +69,7 @@ const App = ({ user, isAdmin }) => {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout style={{ background: '#fff' }}>
+      <Layout style={{ background: '#fff', overflow: 'hidden' }}>
         <Header>
           {user ? (
             <Dropdown overlay={(
@@ -94,7 +94,8 @@ const App = ({ user, isAdmin }) => {
               style={{
                 padding: 24,
                 height: '100%',
-                background: '#fff'
+                background: '#fff',
+                overflow: 'auto',
               }}
         >
           {type === 'image' && <Uploader isAdmin={isAdmin} user={user} type="image" />}

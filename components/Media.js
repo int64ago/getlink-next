@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Spin, Card, Popconfirm, Popover, message } from 'antd';
 import { QrcodeOutlined } from '@ant-design/icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+import useMargin from '../hooks/useMargin';
 import useDebug from '../hooks/useDebug';
 import { cdnQrcode, cdnUrl } from '../utils/helper';
 
@@ -17,14 +18,16 @@ export default function Media({
   loading,
 }) {
   const debug = useDebug();
+  const ref = useRef(null);
+  const margin = useMargin(ref);
 
   return (
     <Spin spinning={loading}>
-      <div className="card-list">
+      <div className="card-list" ref={ref}>
         {list.map(item => (
           <Card
             key={item.key}
-            style={{ width: 340 }}
+            style={{ margin: `10px ${margin}px` }}
             cover={
               type === 'image' ? (
                 <img src={cdnUrl(item.key, type, isAdmin)}/>
