@@ -42,7 +42,7 @@ export default function Media({
                 onCopy={() => message.success('Copied successfully')}>
                 <span>Copy</span>
               </CopyToClipboard>,
-              type === 'image' && <CopyToClipboard key="copy_md" text={`![](${cdnUrl(item.key, type, isAdmin)})`}
+              type === 'image' && <CopyToClipboard key="copy_md" text={`![${item.name}](${cdnUrl(item.key, type, isAdmin)})`}
                 onCopy={() => message.success('Copied successfully')}>
                 <span>Copy MD</span>
               </CopyToClipboard>,
