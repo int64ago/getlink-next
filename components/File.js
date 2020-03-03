@@ -1,17 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { Table, Button, Popconfirm, Popover, message } from 'antd';
 import { QrcodeOutlined, DeleteOutlined } from '@ant-design/icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { cdnQrcode, cdnUrl } from '../utils/helper';
+import { Context } from '../context';
 
 export default function File({
   loading,
-  user,
-  isAdmin,
   list,
   handleRemove,
 }) {
+  const { isAdmin, user } = useContext(Context);
   const columns = useMemo(() => [
     {
       title: 'Name',

@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useState,
   useEffect,
+  useContext,
 } from 'react';
 import { Upload, Alert, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -13,14 +14,12 @@ import File from './File';
 import Media from './Media';
 
 import { cdnQrcode, ext } from '../utils/helper';
+import { Context } from '../context';
 
 const { Dragger } = Upload;
 
-export default function Uploader({
-  user,
-  isAdmin,
-  type,
-}) {
+export default function Uploader({ type }) {
+  const { isAdmin, user } = useContext(Context);
   const [sign, setSign] = useState({});
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);

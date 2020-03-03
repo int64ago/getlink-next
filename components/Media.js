@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { Spin, Card, Popconfirm, Popover, message } from 'antd';
 import { QrcodeOutlined } from '@ant-design/icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -6,17 +6,17 @@ import { Player } from 'video-react';
 
 import useMargin from '../hooks/useMargin';
 import { cdnQrcode, cdnUrl } from '../utils/helper';
+import { Context } from '../context';
 
 const { Meta } = Card;
 
 export default function Media({
   type,
-  user,
-  isAdmin,
   list,
   handleRemove,
   loading,
 }) {
+  const { isAdmin, user } = useContext(Context);
   const ref = useRef(null);
   const margin = useMargin(ref);
 
