@@ -32,7 +32,7 @@ export default function ShortUrl() {
       <Input
         value={longUrl}
         onChange={e => setLongUrl(e.target.value)}
-        style={{ width: 280 }}
+        style={{ width: 250 }}
         placeholder="Please input a url..."
       />
       <Button

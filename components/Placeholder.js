@@ -66,7 +66,7 @@ export default function Placeholder() {
           {(width > 0 && height > 0) && (
             <Form.Item label="Preview">
               <div>
-                <Input style={{ width: 280 }} disabled value={url} />
+                <Input style={{ width: 250 }} disabled value={url} />
                 <CopyToClipboard text={url}
                   onCopy={() => message.success('Copied successfully')}>
                   <Button style={{ margin: '0 10px' }} type="primary">Copy</Button>
