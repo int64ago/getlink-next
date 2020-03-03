@@ -5,7 +5,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Player } from 'video-react';
 
 import useMargin from '../hooks/useMargin';
-import { cdnQrcode, cdnUrl } from '../utils/helper';
+import { cdnQrcode, cdnUrl, ext } from '../utils/helper';
 import { Context } from '../context';
 
 const { Meta } = Card;
@@ -29,9 +29,9 @@ export default function Media({
             style={{ margin: `10px ${margin}px` }}
             bodyStyle={{
               position: 'relative',
-              background: type === 'image'
-                ? `url(${cdnUrl(item.key, type, isAdmin)}?x-oss-process=image/resize,m_pad,h_181,w_298)`
-                : 'unset'
+              // background: type === 'image'
+              //   ? `url(${cdnUrl(item.key, type, isAdmin)}?x-oss-process=image/resize,m_pad,h_181,w_298)`
+              //   : 'unset'
             }}
             actions={[
               <CopyToClipboard key="copy" text={cdnUrl(item.key, type, isAdmin)}
@@ -70,6 +70,9 @@ export default function Media({
                 poster={`${cdnUrl(item.key, type, isAdmin)}?x-oss-process=video/snapshot,t_0,h_181,w_298`}
                 src={cdnUrl(item.key, type, isAdmin)}
               />
+            )}
+            {type === 'image' && (
+              <img src={`${cdnUrl(item.key, type, isAdmin)}${ext(item.key) === '.svg' ? '' : '?x-oss-process=image/resize,m_pad,h_181,w_298'}`} />
             )}
             <Meta
               title={item.name}

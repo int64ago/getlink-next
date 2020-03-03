@@ -36,7 +36,6 @@ export default function Uploader({ type }) {
 
   const getSign = useCallback(() => {
     if (!user && !isDev) return;
-    console.log('getsign')
     fetch(`/api/signature/${type}`)
     .then(res => {
         if (res.status === 200) {
