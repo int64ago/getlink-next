@@ -13,7 +13,7 @@ import qs from 'query-string';
 import File from './File';
 import Media from './Media';
 
-import { cdnQrcode, ext } from '../utils/helper';
+import { ext } from '../utils/helper';
 import { Context } from '../context';
 
 const { Dragger } = Upload;
@@ -78,13 +78,6 @@ export default function Uploader({ type }) {
     getSign();
     handleRefresh();
   }, [getSign, handleRefresh]);
-
-  useEffect(() => {
-    list.forEach(d => {
-      const img = new Image();
-      img.src = cdnQrcode(d.key, d.type, isAdmin);
-    });
-  }, [list]);
 
   useEffect(() => {
     setList([]);
