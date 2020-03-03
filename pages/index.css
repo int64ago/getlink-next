@@ -16,27 +16,35 @@ code {
   height: 100%;
 }
 
-.ant-card-cover {
-  height: 155px;
-  width: 240px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+.ant-card-body {
+  padding: 0;
+  height: 181px;
 }
 
-.ant-card-cover > img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+.ant-card-meta {
+  position: absolute;
+  width: 250px;
+  height: 55px;
+  top: 102px;
+  left: 24px;
 }
 
-.ant-card-cover > video {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+.ant-card-meta-detail {
+  background: rgba(0,0,0,0.2);
+  border-radius: 5px;
+  padding: 0 5px;
+}
+
+.ant-card-meta-detail:hover {
+  background: rgba(0,0,0,0.4);
+}
+
+.ant-card-meta-title {
+  color: #fff;
+}
+
+.ant-card-meta-description {
+  color: #f0f0f0;
 }
 
 .ant-card {

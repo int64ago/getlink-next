@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Spin, Card, Popconfirm, Popover, message } from 'antd';
 import { QrcodeOutlined } from '@ant-design/icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Player } from 'video-react';
 
 import useMargin from '../hooks/useMargin';
 import { cdnQrcode, cdnUrl } from '../utils/helper';
@@ -26,17 +27,12 @@ export default function Media({
           <Card
             key={item.key}
             style={{ margin: `10px ${margin}px` }}
-            cover={
-              type === 'image' ? (
-                <img src={cdnUrl(item.key, type, isAdmin)}/>
-              ) : (
-                <video
-                  controls
-                  poster={`${cdnUrl(item.key, type, isAdmin)}?x-oss-process=video/snapshot,t_0,ar_auto`}
-                  src={cdnUrl(item.key, type, isAdmin)}
-                />
-              )
-            }
+            bodyStyle={{
+              position: 'relative',
+              background: type === 'image'
+                ? `url(${cdnUrl(item.key, type, isAdmin)}?x-oss-process=image/resize,m_pad,h_181,w_298)`
+                : 'unset'
+            }}
             actions={[
               <CopyToClipboard key="copy" text={cdnUrl(item.key, type, isAdmin)}
                 onCopy={() => message.success('Copied successfully')}>
@@ -65,6 +61,16 @@ export default function Media({
               </Popover>
             ].filter(Boolean)}
           >
+            {type === 'video' && (
+              <Player
+                playsInline
+                width={298}
+                height={181}
+                fluid={false}
+                poster={`${cdnUrl(item.key, type, isAdmin)}?x-oss-process=video/snapshot,t_0,h_181,w_298`}
+                src={cdnUrl(item.key, type, isAdmin)}
+              />
+            )}
             <Meta
               title={item.name}
               description={new Date(item.createdAt).toLocaleString()}

@@ -22,6 +22,7 @@ import Placeholder from '../components/Placeholder';
 import auth0 from '../utils/auth0';
 
 import 'antd/dist/antd.css';
+import 'video-react/dist/video-react.css';
 import './index.css';
 
 const { Header, Sider, Content } = Layout;
