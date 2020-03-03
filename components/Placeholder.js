@@ -11,13 +11,12 @@ const layout = {
 
 export default function Placeholder() {
   const [text, setText] = useState('');
-  const [format, setFormat] = useState('png');
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const [backgroundColor, setBackgroundColor] = useState('CCC');
+  const [backgroundColor, setBackgroundColor] = useState('CCCCCC');
   const [textColor, setTextColor] = useState('A3A3A3');
 
-  let url = `//p.302.at/${width}x${height}/${backgroundColor || 'CCC'}/${textColor || 'A3A3A3'}.${format}`;
+  let url = `https://p.302.at/${width}x${height}/${backgroundColor || 'CCCCCC'}/${textColor || 'A3A3A3'}.png`;
   if (text) {
     url = `${url}?text=${text}`;
   }
@@ -45,12 +44,6 @@ export default function Placeholder() {
               min={0}
             />
           </Form.Item>
-          <Form.Item label="Format">
-            <Radio.Group value={format} onChange={(e) => setFormat(e.target.value)}>
-              <Radio value="png">PNG</Radio>
-              <Radio value="jpg">JPG</Radio>
-            </Radio.Group>
-          </Form.Item>
           <Form.Item label="Background Color">
             <Input
               style={{ width: 110 }}
@@ -76,8 +69,9 @@ export default function Placeholder() {
                 <Input style={{ width: 280 }} disabled value={url} />
                 <CopyToClipboard text={url}
                   onCopy={() => message.success('Copied successfully')}>
-                  <Button type="primary">Copy</Button>
+                  <Button style={{ margin: '0 10px' }} type="primary">Copy</Button>
                 </CopyToClipboard>
+                <Button href={url} download>Download</Button>
                 <div style={{ marginTop: 20 }}>
                   <img style={{ maxWidth: '100%', maxHeight: 300 }} src={url} />
                 </div>
