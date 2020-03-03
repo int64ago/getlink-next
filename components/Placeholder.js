@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, InputNumber, Radio, Button, Input, message } from 'antd';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+import useDebounce from '../hooks/useDebounce';
 
 const layout = {
   labelCol: { span: 8 },
@@ -16,9 +17,13 @@ export default function Placeholder() {
   const [backgroundColor, setBackgroundColor] = useState('CCCCCC');
   const [textColor, setTextColor] = useState('A3A3A3');
 
-  let url = `https://p.302.at/${width}x${height}/${backgroundColor || 'CCCCCC'}/${textColor || 'A3A3A3'}.png`;
-  if (text) {
-    url = `${url}?text=${text}`;
+  const [
+    a, b, c, d, e
+  ] = useDebounce([text, width, height, backgroundColor, textColor], 500);
+
+  let url = `https://p.302.at/${b}x${c}/${d || 'CCCCCC'}/${e || 'A3A3A3'}.png`;
+  if (a) {
+    url = `${url}?text=${a}`;
   }
 
   return (

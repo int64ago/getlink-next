@@ -8,7 +8,7 @@ import { qrcode } from '../utils/helper';
 
 export default function QRCode() {
   const [text, setText] = useState('');
-  const debouncedText = useDebounce(text, 500);
+  const [debouncedText] = useDebounce([text], 500);
 
   const handleChange = useCallback((e) => {
     setText(e.target.value);
