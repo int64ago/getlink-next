@@ -7,17 +7,19 @@ import { adminUser } from '../../../utils/av';
 const OSSAccessKeyId = process.env.OSS_AK;
 const OSSAccessKeySecret = process.env.OSS_SK;
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export default async (req, res) => {
   const type = req.query['type'];
   const { user: { sub: uid } = {} } = await auth0.getSession(req) || {};
 
-  if (!uid) {
+  if (!uid && !isDev) {
     return res.status(403).end('Invalid user!');
   }
   const isAdmin = await adminUser(uid);
 
   const host = OSS[isAdmin ? type : 'anonymouse'].host;
-  const maxSize = isAdmin
+  const maxSize = (isAdmin || isDev)
     ? 1024 * 1024 * 1000 // 1GB
     : 1024 * 1024 * 50; // 50MB
 

@@ -19,7 +19,7 @@ import { Context } from '../context';
 const { Dragger } = Upload;
 
 export default function Uploader({ type }) {
-  const { isAdmin, user } = useContext(Context);
+  const { isAdmin, user, isDev } = useContext(Context);
   const [sign, setSign] = useState({});
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,8 @@ export default function Uploader({ type }) {
   }, [type]);
 
   const getSign = useCallback(() => {
-    if (!user) return;
+    if (!user && !isDev) return;
+    console.log('getsign')
     fetch(`/api/signature/${type}`)
     .then(res => {
         if (res.status === 200) {

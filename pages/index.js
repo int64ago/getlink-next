@@ -28,7 +28,7 @@ import './index.css';
 
 const { Header, Sider, Content } = Layout;
 
-const App = ({ user, isAdmin, env }) => {
+const App = ({ user, isAdmin, isDev }) => {
   const [type, setType] = useState('image');
 
   const handleTypeChange = useCallback((e) => {
@@ -36,7 +36,7 @@ const App = ({ user, isAdmin, env }) => {
   }, []);
 
   return (
-    <Context.Provider value={{ user, isAdmin, env }}>
+    <Context.Provider value={{ user, isAdmin, isDev }}>
       <Layout style={{ height: '100%', flexDirection: 'row' }}>
         <HTMLHead />
         <Sider
@@ -119,8 +119,8 @@ App.getInitialProps = async ({ req, res }) => {
     const { adminUser } = require('../utils/av');
     const { user } = await auth0.getSession(req) || {};
     const isAdmin = await adminUser(user && user.sub);
-    const env = process.env.NODE_ENV;
-    return { user, isAdmin, env };
+    const isDev = process.env.NODE_ENV === 'development';
+    return { user, isAdmin, isDev };
   }
 };
 

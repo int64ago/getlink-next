@@ -16,7 +16,7 @@ export default function Media({
   handleRemove,
   loading,
 }) {
-  const { isAdmin, user } = useContext(Context);
+  const { isAdmin, user, isDev } = useContext(Context);
   const ref = useRef(null);
   const margin = useMargin(ref);
 
@@ -42,7 +42,7 @@ export default function Media({
                 onCopy={() => message.success('Copied successfully')}>
                 <span>Copy MD</span>
               </CopyToClipboard>,
-              user &&
+              (user || isDev) &&
               <Popconfirm
                 title="Are you sure to delete this?"
                 onConfirm={() => handleRemove(item.objectId)}
