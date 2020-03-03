@@ -67,7 +67,7 @@ export default function Media({
                 width={298}
                 height={181}
                 fluid={false}
-                poster={`${cdnUrl(item.key, type, isAdmin)}?x-oss-process=video/snapshot,t_0,h_181,w_298`}
+                poster={`${cdnUrl(item.key, type, isAdmin)}?x-oss-process=video/snapshot,t_0,h_181,w_298,ar_auto`}
                 src={cdnUrl(item.key, type, isAdmin)}
               />
             )}
