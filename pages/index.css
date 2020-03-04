@@ -88,3 +88,7 @@ code {
   font-size: 30px;
   font-weight: bold;
 }
+
+.video-react-control-bar {
+  z-index: 99;
+}
