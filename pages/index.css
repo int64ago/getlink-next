@@ -32,16 +32,17 @@ code {
 
 .ant-card-meta {
   position: absolute;
-  width: 250px;
-  height: 55px;
-  top: 102px;
-  left: 24px;
+  width: 100%;
+  bottom: 4px;
 }
 
 .ant-card-meta-detail {
   background: rgba(0,0,0,0.2);
-  border-radius: 5px;
-  padding: 0 5px;
+  padding: 0 10px;
+}
+
+.ant-card-meta-title {
+  margin-bottom: 0 !important;
 }
 
 .ant-card-meta-detail:hover {
