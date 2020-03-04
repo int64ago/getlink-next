@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useContext,
 } from 'react';
-import { Upload, Alert, message } from 'antd';
+import { Upload, Alert, message, Spin } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import uuidV4 from 'uuid/v4';
 import qs from 'query-string';
@@ -18,11 +18,15 @@ import { Context } from '../context';
 
 const { Dragger } = Upload;
 
+// Supported format in paste mode
+const accepts = ['image/gif', 'image/png', 'image/jpeg', 'image/bmp'];
+
 export default function Uploader({ type }) {
   const { isAdmin, user, isDev } = useContext(Context);
   const [sign, setSign] = useState({});
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const handleRefresh = useCallback(() => {
     setLoading(true);
@@ -73,6 +77,49 @@ export default function Uploader({ type }) {
       });
   }, [type, handleRefresh]);
 
+  const handlePaste = useCallback((e) => {
+    if (uploading) return;
+
+    if (!e.clipboardData
+      && !e.clipboardData.items
+      && e.clipboardData.items.length === 0) {
+      message.error('There\'s no image pasted.');
+      return;
+    }
+
+    if (!accepts.includes(e.clipboardData.items[0].type)) {
+      message.error('The format\'s not supported.');
+      return;
+    }
+
+    const file = e.clipboardData.items[0].getAsFile();
+    const form = new FormData();
+    const key = `${uuidV4()}${ext(file.name)}`;
+    Object.entries({
+      ...sign,
+      key,
+    }).forEach(([k, v]) => {
+      form.append(k, v);
+    });
+    form.append('file', file);
+
+    setUploading(true);
+    fetch(sign.host, {
+      method: 'POST',
+      body: form,
+    }).then(res => {
+      if (res.status !== 200) {
+        return Promise.reject(new Error(res.statusText));
+      }
+      const { name, size } = file;
+      handleSave({ name, size, key });
+    }).catch(err => {
+      message.error(err.message || 'Upload failed.')
+    }).finally(() => {
+      setUploading(false);
+    });
+  }, [uploading, sign, handleSave]);
+
   useEffect(() => {
     getSign();
     handleRefresh();
@@ -118,7 +165,7 @@ export default function Uploader({ type }) {
   }), [type, sign, handleSave]);
 
   return (
-    <>
+    <div onPaste={handlePaste}>
       {!user && (
         <Alert
           style={{ marginBottom: 20 }}
@@ -127,12 +174,14 @@ export default function Uploader({ type }) {
           type="warning"
         />
       )}
-      <Dragger {...uploadProps}>
-        <p className="ant-upload-drag-icon">
-          <UploadOutlined />
-        </p>
-        <p className="ant-upload-text">Drop files here or click to upload.</p>
-      </Dragger>
+      <Spin spinning={uploading}>
+        <Dragger {...uploadProps}>
+          <p className="ant-upload-drag-icon">
+            <UploadOutlined />
+          </p>
+          <p className="ant-upload-text">Drop files{type === 'image' ? '(or paste image)' : ''} here or click to upload.</p>
+        </Dragger>
+      </Spin>
       <div style={{ marginTop: 20 }}>
         {type === 'file' ? (
           <File
@@ -153,6 +202,6 @@ export default function Uploader({ type }) {
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
