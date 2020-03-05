@@ -166,6 +166,7 @@ export default function Uploader({ type }) {
 
   return (
     <div onPaste={handlePaste}>
+      <input autoFocus style={{ width: 1, height: 1, position: 'absolute' }}></input>
       {!user && (
         <Alert
           style={{ marginBottom: 20 }}
