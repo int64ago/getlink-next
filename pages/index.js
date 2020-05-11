@@ -2,7 +2,7 @@ import React, {
   useCallback,
   useState,
 } from 'react';
-import { Layout, Popover, Menu, Avatar, Dropdown, Button } from 'antd';
+import { Layout, Menu, Avatar, Dropdown, Button } from 'antd';
 import {
   QrcodeOutlined,
   FileImageOutlined,
@@ -87,9 +87,6 @@ const App = ({ user, isAdmin, isDev }) => {
             ) : (
               <div>
                 <Button type="link" href="/api/login">Login</Button>
-                <Popover placement="left" content="There's no SLA guarantee for non-login user.">
-                  <InfoCircleTwoTone />
-                </Popover>
               </div>
             )}
           </Header>
