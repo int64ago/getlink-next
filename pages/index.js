@@ -10,7 +10,6 @@ import {
   VideoCameraOutlined,
   ContainerOutlined,
   LinkOutlined,
-  InfoCircleTwoTone,
 } from '@ant-design/icons';
 
 import HTMLHead from '../components/HTMLHead';
